@@ -15,8 +15,8 @@
 
 spring:
   profiles:
-    # Uncomment the following line to enable tests against production database type rather than H2, using Testcontainers
-    #active: testcontainers
+  # Uncomment the following line to enable tests against production database type rather than H2, using Testcontainers
+  #active: testcontainers
   application:
     name: Paymentservice
   datasource:
@@ -97,6 +97,18 @@ jhipster:
         base64-secret: MTMxYWI2ZWUzZGRlNTdkN2Y4OGI0MTdmNDVlYzU2MzM1ZDg0NWU0NTY4ODFmMzBhZTIzNzIxNGE3MzgyOGM1NjM0ODQyYjdhYWMzNDA3YWRkZGRmOTNhNjRkMmU1MTJiYTU1MjkxNjg2MWVlMzdkZGFkMzUyYWNhNzRlOTdhMWQ=
         # Token is valid 24 hours
         token-validity-in-seconds: 86400
+
+cloud:
+  aws:
+    credentials:
+      access-key: changeit
+      secret-key: changeit
+    region:
+      static: us-east-1
+    sns:
+      endpoint: changeit
+    sqs:
+      endpoint: changeit
 # ===================================================================
 # Application specific properties
 # Add your own application properties here, see the ApplicationProperties class
@@ -106,4 +118,7 @@ jhipster:
 # https://www.jhipster.tech/common-application-properties/
 # ===================================================================
 
-# application:
+application:
+  payservice:
+    trial-period-days: 0
+    stripekey: changeit
