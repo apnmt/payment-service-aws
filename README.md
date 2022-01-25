@@ -1,9 +1,23 @@
+aws s3 mb --endpoint-url http://localhost:4566 s3://lambda
+
+aws s3 cp --endpoint-url http://localhost:4566 paymentservice-0.0.1-SNAPSHOT.jar s3://lambda
+
+aws lambda create-function \
+--endpoint-url http://localhost:4566 \
+--function-name paymentservice \
+--runtime java11 \
+--region eu-central-1 \
+--code S3Bucket=lambda,S3Key=paymentservice-0.0.1-SNAPSHOT.jar \
+--role arn:aws:iam::12345:role/ignoreme
+
 # Paymentservice
 
-This application was generated using JHipster 7.5.0, you can find documentation and help at [https://www.jhipster.tech/documentation-archive/v7.5.0](https://www.jhipster.tech/documentation-archive/v7.5.0).
+This application was generated using JHipster 7.5.0, you can find documentation and help
+at [https://www.jhipster.tech/documentation-archive/v7.5.0](https://www.jhipster.tech/documentation-archive/v7.5.0).
 
-This is a "microservice" application intended to be part of a microservice architecture, please refer to the [Doing microservices with JHipster][] page of the documentation for more information.
-This application is configured for Service Discovery and Configuration with . On launch, it will refuse to start if it is not able to connect to .
+This is a "microservice" application intended to be part of a microservice architecture, please refer to
+the [Doing microservices with JHipster][] page of the documentation for more information. This application is configured
+for Service Discovery and Configuration with . On launch, it will refuse to start if it is not able to connect to .
 
 ## Project Structure
 
@@ -13,21 +27,17 @@ In the project root, JHipster generates configuration files for tools like git, 
 
 `/src/*` structure follows default Java structure.
 
-- `.yo-rc.json` - Yeoman configuration file
-  JHipster configuration is stored in this file at `generator-jhipster` key. You may find `generator-jhipster-*` for specific blueprints configuration.
-- `.yo-resolve` (optional) - Yeoman conflict resolver
-  Allows to use a specific action when conflicts are found skipping prompts for files that matches a pattern. Each line should match `[pattern] [action]` with pattern been a [Minimatch](https://github.com/isaacs/minimatch#minimatch) pattern and action been one of skip (default if ommited) or force. Lines starting with `#` are considered comments and are ignored.
+- `.yo-rc.json` - Yeoman configuration file JHipster configuration is stored in this file at `generator-jhipster` key. You may find `generator-jhipster-*` for specific blueprints configuration.
+- `.yo-resolve` (optional) - Yeoman conflict resolver Allows to use a specific action when conflicts are found skipping prompts for files that matches a pattern. Each line should match `[pattern] [action]` with pattern been a [Minimatch](https://github.com/isaacs/minimatch#minimatch) pattern and action been one of skip (default if ommited) or force. Lines starting with `#` are considered comments and are ignored.
 - `.jhipster/*.json` - JHipster entity configuration files
-- `npmw` - wrapper to use locally installed npm.
-  JHipster installs Node and npm locally using the build tool by default. This wrapper makes sure npm is installed locally and uses it avoiding some differences different versions can cause. By using `./npmw` instead of the traditional `npm` you can configure a Node-less environment to develop or test your application.
+- `npmw` - wrapper to use locally installed npm. JHipster installs Node and npm locally using the build tool by default. This wrapper makes sure npm is installed locally and uses it avoiding some differences different versions can cause. By using `./npmw` instead of the traditional `npm` you can configure a Node-less environment to develop or test your application.
 - `/src/main/docker` - Docker configurations for the application and services that the application depends on
 
 ## Development
 
 Before you can build this project, you must install and configure the following dependencies on your machine:
 
-1. [Node.js][]: We use Node to run a development web server and build the project.
-   Depending on your system, you can install Node either from source or as a pre-packaged bundle.
+1. [Node.js][]: We use Node to run a development web server and build the project. Depending on your system, you can install Node either from source or as a pre-packaged bundle.
 
 After installing Node, you should be able to run the following command to install development tools.
 You will only need to run this command when dependencies change in [package.json](package.json).
