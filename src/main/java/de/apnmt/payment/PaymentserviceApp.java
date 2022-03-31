@@ -1,13 +1,7 @@
 package de.apnmt.payment;
 
+import com.amazonaws.xray.AWSXRay;
 import de.apnmt.aws.common.config.AwsCloudProperties;
-import de.apnmt.payment.config.ApplicationProperties;
-import java.net.InetAddress;
-import java.net.UnknownHostException;
-import java.util.Arrays;
-import java.util.Collection;
-import java.util.Optional;
-import javax.annotation.PostConstruct;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -18,6 +12,13 @@ import org.springframework.boot.context.properties.EnableConfigurationProperties
 import org.springframework.core.env.Environment;
 import tech.jhipster.config.DefaultProfileUtil;
 import tech.jhipster.config.JHipsterConstants;
+
+import javax.annotation.PostConstruct;
+import java.net.InetAddress;
+import java.net.UnknownHostException;
+import java.util.Arrays;
+import java.util.Collection;
+import java.util.Optional;
 
 @SpringBootApplication(scanBasePackages = {"de.apnmt.common", "de.apnmt.aws.common", "de.apnmt.payment.common", "de.apnmt.payment"})
 @EnableConfigurationProperties({ LiquibaseProperties.class, AwsCloudProperties.class })
@@ -65,6 +66,7 @@ public class PaymentserviceApp {
      * @param args the command line arguments.
      */
     public static void main(String[] args) {
+        AWSXRay.beginSegment("Liquibase");
         SpringApplication app = new SpringApplication(PaymentserviceApp.class);
         DefaultProfileUtil.addDefaultProfile(app);
         Environment env = app.run(args).getEnvironment();
